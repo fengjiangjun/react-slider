@@ -1,0 +1,35 @@
+.a {
+  position: relative;
+  overflow: hidden;
+  margin: auto ;
+  margin-top:100px;
+  
+}
+.b{
+display:flex;
+
+}
+.d{
+height:100%;
+}
+.round-container{
+  display: flex;
+  position: absolute;
+  bottom: 30px;
+  left:30px;
+}
+.red{
+  height: 10px;
+  width:10px;
+  background: red;
+  border-radius: 100%;
+  margin-left:20px;
+ 
+}
+.yello{
+  width: 10px;
+  height: 10px;
+  background:yellow;
+  margin-left:20px;
+  border-radius: 100%;
+}

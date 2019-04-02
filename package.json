@@ -1,0 +1,35 @@
+{
+  "name": "react-button-fjj",
+  "version": "1.0.7",
+  "description": "",
+  "main": "./dist/index/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode=development",
+    "build": "babel src -d dist --copy-files"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "~6.26.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "source-list-map": "^2.0.1",
+    "style-loader": "^0.23.1",
+    "watchpack": "^1.6.0",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  }
+}
