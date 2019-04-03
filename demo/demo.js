@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import slider from '../slider/slider.js';
+import Slider from '../slider/slider.js';
 const list = [
   {
     text: 'https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg',
@@ -19,11 +19,11 @@ const list = [
     href: 'https://www.taobao.com/'
   }
 ]
-const B = 2000;
-const D = '500px';
-const E = '300px';
-const C = '2s';
+const intervalTime = 2000;
+const width = 500;
+const height = '300px';
+const transitionTime = '2s';
 const A = <div>
-  <slider list={list} B={B} C={C} D={D} E={E} />
+  <Slider list={list} intervalTime={intervalTime} width={width} height={height} transitionTime={transitionTime} />
 </div>
 render(A, document.getElementById('root'));

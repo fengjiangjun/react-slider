@@ -8,14 +8,14 @@ export default class extends React.Component {
     }
   }
   componentDidMount () {
-    this.refs.aa.style.width = this.props.D;
-    this.refs.aa.style.height = this.props.E;
-    this.refs.c.style.height = this.props.E;
-    const B = this.refs.c.length;
-    this.refs.c.style.width = B * 500 + 'px';
-    this.time = setTimeout(this.loop.bind(this), this.props.B);
+    this.refs.aa.style.width = this.props.width + "px";
+    this.refs.aa.style.height = this.props.height;
+    this.refs.c.style.height = this.props.height;
+    const count = this.props.list.length;
+    this.refs.c.style.width = count * this.props.width + 'px';
+    this.time = setTimeout(this.loop.bind(this), this.props.intervalTime);
     this.refs.c.addEventListener('transitionend', () => {
-      this.time = setTimeout(this.loop.bind(this), this.props.B);
+      this.time = setTimeout(this.loop.bind(this), this.props.intervalTime);
       if (this.state.index == 4) {
         this.refs.c.style.transition = '0s';
         this.refs.c.style.transform = 'translateX(0px)';
@@ -28,8 +28,8 @@ export default class extends React.Component {
   }
   loop () {
     if (this.state.index < 4) {
-      this.refs.c.style.transition = this.props.C;
-      this.refs.c.style.transform = 'translateX(' + (-this.state.index * 500) + 'px)';
+      this.refs.c.style.transition = this.props.transitionTime;
+      this.refs.c.style.transform = 'translateX(' + (-this.state.index * this.props.width) + 'px)';
     }
     this.setState(prevState => ({
       index: prevState.index + 1
@@ -38,7 +38,7 @@ export default class extends React.Component {
   render () {
     return <div className='a' ref='aa'><div className='b' ref='c'>
       {this.props.list.map(item => {
-        return <img src={item.text} style={{ width: this.props.D }} className='d' onClick={() => { window.open(item.href); }} />
+        return <img src={item.text} style={{ width: this.props.width }} className='d' onClick={() => { window.open(item.href); }} />
 
       })}
     </div>
