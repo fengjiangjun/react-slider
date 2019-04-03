@@ -11,7 +11,7 @@ export default class extends React.Component {
     this.refs.aa.style.width = this.props.D;
     this.refs.aa.style.height = this.props.E;
     this.refs.c.style.height = this.props.E;
-    const B = this.refs.c.length;
+    const B = this.props.list.length;
     this.refs.c.style.width = B * 500 + 'px';
     this.time = setTimeout(this.loop.bind(this), this.props.B);
     this.refs.c.addEventListener('transitionend', () => {
