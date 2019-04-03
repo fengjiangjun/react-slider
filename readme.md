@@ -2,9 +2,9 @@
 
 >前段时间使用原生 JS 实现了一个轮播图插件，现在在 React  的基础上，重新实现了一个组件。
 
-* [源码](https://www.baidu.com)
+* [源码](https://github.com/fengjiangjun/react-slider)
 
-* [演示]()
+* [演示](https://fengjiangjun.github.io/react-slider/dist/index.html)
 ## 正文
 本文介绍一个基于 React 框架实现的轮播图组件。
 ### 需求文档
