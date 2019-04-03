@@ -1,5 +1,5 @@
 import React from 'react';
-import './src.css';
+import './slider.css';
 export default class extends React.Component {
   constructor(props) {
     super(props);

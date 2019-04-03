@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import SRC from '../SRC/src.js';
+import slider from '../slider/slider.js';
 const list = [
   {
     text: 'https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg',
@@ -24,6 +24,6 @@ const D = '500px';
 const E = '300px';
 const C = '2s';
 const A = <div>
-  <SRC list={list} B={B} C={C} D={D} E={E} />
+  <slider list={list} B={B} C={C} D={D} E={E} />
 </div>
 render(A, document.getElementById('root'));
