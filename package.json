@@ -1,15 +1,15 @@
 {
   "name": "react-slider-fjj",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "description": "react-slider",
-  "main": "./dist/slider.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode=development",
-    "demo": "webpack",
-    "build": "babel slider -d dist --copy-files"
+    "demo": "webpack --config ./webpack.config.js --progress --colors",
+    "build": "babel src -d dist --copy-files "
   },
-  "author": "",
+  "author": "fengjiangjun",
   "license": "ISC",
   "devDependencies": {
     "babel": "^6.23.0",

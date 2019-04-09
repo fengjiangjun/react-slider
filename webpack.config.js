@@ -2,13 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: path.join(__dirname, "demo/demo.html"),
-  filename: "./index.html"
+  filename: "./demo.html"
 });
 module.exports = {
   entry: path.join(__dirname, "demo/demo.js"),
   output: {
     path: path.join(__dirname, "./dist"),
-    filename: "dist.js"
+    filename: "demo.js"
   },
   module: {
     rules: [
@@ -36,6 +36,6 @@ module.exports = {
     extensions: [".js", ".jsx"]
   },
   devServer: {
-    port: 3001
+    port: 3002
   }
 };
