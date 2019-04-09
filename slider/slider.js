@@ -9,8 +9,8 @@ export default class extends React.Component {
   }
   componentDidMount () {
     this.refs.aa.style.width = this.props.width + "px";
-    this.refs.aa.style.height = this.props.height;
-    this.refs.c.style.height = this.props.height;
+    this.refs.aa.style.height = this.props.height + "px";
+    this.refs.c.style.height = this.props.height + "px";
     const count = this.props.list.length;
     this.refs.c.style.width = count * this.props.width + 'px';
     this.time = setTimeout(this.loop.bind(this), this.props.intervalTime);
@@ -22,9 +22,6 @@ export default class extends React.Component {
         this.state.index = 1;
       }
     })
-
-
-
   }
   loop () {
     if (this.state.index < 4) {
@@ -49,14 +46,10 @@ export default class extends React.Component {
               return null;
             }
             if (this.state.index - 1 === index && this.state.index !== (this.props.list.length)) {
-              return <div className="yello">
-
-              </div>
+              return <div className="yello"></div>
             }
             if (this.state.index == (this.props.list.length) && index == 0) {
-              return <div className="yello">
-
-              </div>
+              return <div className="yello"></div>
             }
 
             return <div className='red' onClick={() => { clearTimeout(this.time); this.setState({ index: index }); this.time = setTimeout(this.loop.bind(this), 0); }}>
