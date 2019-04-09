@@ -21,7 +21,7 @@ const list = [
 ]
 const intervalTime = 2000;
 const width = 500;
-const height = '300px';
+const height = 300;
 const transitionTime = '2s';
 const A = <div>
   <Slider list={list} intervalTime={intervalTime} width={width} height={height} transitionTime={transitionTime} />
