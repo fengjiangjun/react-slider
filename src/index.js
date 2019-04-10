@@ -10,12 +10,13 @@ export default class extends React.Component {
     this.imgWrapper = React.createRef();
     this.list = this.props.list;
 
+    this.list.push(this.props.list[0]);
+
   }
   componentDidMount () {
     if (!this.list) {
       return;
     }
-    this.list.push(this.props.list[0]);
     this.container.current.style.width = this.props.width + "px";
     this.container.current.style.height = this.props.height + "px";
     this.imgWrapper.current.style.height = this.props.height + "px";
@@ -24,7 +25,7 @@ export default class extends React.Component {
     this.time = setTimeout(this.loop.bind(this), this.props.intervalTime || 2000);
     this.imgWrapper.current.addEventListener('transitionend', () => {
       this.time = setTimeout(this.loop.bind(this), this.props.intervalTime || 2000);
-      if (this.state.index == 4) {
+      if (this.state.index == count) {
         this.imgWrapper.current.style.transition = '0s';
         this.imgWrapper.current.style.transform = 'translateX(0px)';
         this.state.index = 1;
@@ -32,7 +33,7 @@ export default class extends React.Component {
     })
   }
   loop () {
-    if (this.state.index < 4) {
+    if (this.state.index < this.list.length) {
       this.imgWrapper.current.style.transition = this.props.transitionTime || '2s';
       this.imgWrapper.current.style.transform = 'translateX(' + (-this.state.index * this.props.width) + 'px)';
     }

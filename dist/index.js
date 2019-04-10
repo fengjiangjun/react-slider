@@ -35,6 +35,8 @@ var _class = function (_React$Component) {
     _this.imgWrapper = _react2.default.createRef();
     _this.list = _this.props.list;
 
+    _this.list.push(_this.props.list[0]);
+
     return _this;
   }
 
@@ -46,7 +48,6 @@ var _class = function (_React$Component) {
       if (!this.list) {
         return;
       }
-      this.list.push(this.props.list[0]);
       this.container.current.style.width = this.props.width + "px";
       this.container.current.style.height = this.props.height + "px";
       this.imgWrapper.current.style.height = this.props.height + "px";
@@ -55,7 +56,7 @@ var _class = function (_React$Component) {
       this.time = setTimeout(this.loop.bind(this), this.props.intervalTime || 2000);
       this.imgWrapper.current.addEventListener('transitionend', function () {
         _this2.time = setTimeout(_this2.loop.bind(_this2), _this2.props.intervalTime || 2000);
-        if (_this2.state.index == 4) {
+        if (_this2.state.index == count) {
           _this2.imgWrapper.current.style.transition = '0s';
           _this2.imgWrapper.current.style.transform = 'translateX(0px)';
           _this2.state.index = 1;
@@ -65,7 +66,7 @@ var _class = function (_React$Component) {
   }, {
     key: 'loop',
     value: function loop() {
-      if (this.state.index < 4) {
+      if (this.state.index < this.list.length) {
         this.imgWrapper.current.style.transition = this.props.transitionTime || '2s';
         this.imgWrapper.current.style.transform = 'translateX(' + -this.state.index * this.props.width + 'px)';
       }

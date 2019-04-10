@@ -1,6 +1,6 @@
 {
   "name": "react-slider-fjj",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "react-slider",
   "main": "./dist/index.js",
   "scripts": {

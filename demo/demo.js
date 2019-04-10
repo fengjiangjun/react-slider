@@ -13,10 +13,6 @@ const list = [
   {
     text: 'http://img1.360buyimg.com/da/jfs/t1/28375/32/13056/100159/5c9c1a76E968a87f6/86fd143c9dfc1d0c.jpg',
     href: 'http://www.baidu.com/'
-  },
-  {
-    text: 'https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg',
-    href: 'https://www.taobao.com/'
   }
 ]
 const intervalTime = 2000;
