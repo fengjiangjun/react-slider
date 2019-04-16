@@ -4,7 +4,9 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 1
+      index: 1,
+      width: 0,
+      height: 0
     }
     this.container = React.createRef();
     this.imgWrapper = React.createRef();
@@ -17,25 +19,32 @@ export default class extends React.Component {
     if (!this.list) {
       return;
     }
-    this.container.current.style.width = this.props.width + "px";
-    this.container.current.style.height = this.props.height + "px";
-    this.imgWrapper.current.style.height = this.props.height + "px";
-    const count = this.list.length;
-    this.imgWrapper.current.style.width = count * this.props.width + 'px';
-    this.time = setTimeout(this.loop.bind(this), this.props.intervalTime || 2000);
-    this.imgWrapper.current.addEventListener('transitionend', () => {
+    const parent = this.container.current.parentNode;
+    this.setState({
+      width: this.props.width || parent.clientWidth,
+      height: this.props.height || parent.clientHeight
+    }, () => {
+      this.container.current.style.width = this.state.width + "px";
+      this.container.current.style.height = this.state.height + "px";
+      this.imgWrapper.current.style.height = this.state.height + "px";
+      const count = this.list.length;
+      this.imgWrapper.current.style.width = count * this.state.width + 'px';
       this.time = setTimeout(this.loop.bind(this), this.props.intervalTime || 2000);
-      if (this.state.index == count) {
-        this.imgWrapper.current.style.transition = '0s';
-        this.imgWrapper.current.style.transform = 'translateX(0px)';
-        this.state.index = 1;
-      }
-    })
+      this.imgWrapper.current.addEventListener('transitionend', () => {
+        this.time = setTimeout(this.loop.bind(this), this.props.intervalTime || 2000);
+        if (this.state.index == count) {
+          this.imgWrapper.current.style.transition = '0s';
+          this.imgWrapper.current.style.transform = 'translateX(0px)';
+          this.state.index = 1;
+        }
+      })
+    });
+
   }
   loop () {
     if (this.state.index < this.list.length) {
       this.imgWrapper.current.style.transition = this.props.transitionTime || '2s';
-      this.imgWrapper.current.style.transform = 'translateX(' + (-this.state.index * this.props.width) + 'px)';
+      this.imgWrapper.current.style.transform = 'translateX(' + (-this.state.index * this.state.width) + 'px)';
     }
     this.setState(prevState => ({
       index: prevState.index + 1
@@ -44,7 +53,7 @@ export default class extends React.Component {
   render () {
     return <div className='container' ref={this.container}><div className='img-wrapper' ref={this.imgWrapper}>
       {this.list.map(item => {
-        return <img src={item.text} style={{ width: this.props.width }} className='img-item' onClick={() => { window.open(item.href); }} />
+        return <img src={item.text} style={{ width: this.state.width }} className='img-item' onClick={() => { window.open(item.href); }} />
 
       })}
     </div>
@@ -55,13 +64,13 @@ export default class extends React.Component {
               return null;
             }
             if (this.state.index - 1 === index && this.state.index !== (this.list.length)) {
-              return <div className="yello"></div>
+              return <div className={(this.props.roundActiveClassName || '') + " yello"}></div>
             }
             if (this.state.index == (this.list.length) && index == 0) {
-              return <div className="yello"></div>
+              return <div className={(this.props.roundActiveClassName || '') + " yello"}></div>
             }
 
-            return <div className='red' onClick={() => { clearTimeout(this.time); this.setState({ index: index }); this.time = setTimeout(this.loop.bind(this), 0); }}>
+            return <div className={(this.props.roundClassName || '') + " red"} onClick={() => { clearTimeout(this.time); this.setState({ index: index }); this.time = setTimeout(this.loop.bind(this), 0); }}>
             </div>
           })}
       </div>

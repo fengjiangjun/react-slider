@@ -29,7 +29,9 @@ var _class = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
 
     _this.state = {
-      index: 1
+      index: 1,
+      width: 0,
+      height: 0
     };
     _this.container = _react2.default.createRef();
     _this.imgWrapper = _react2.default.createRef();
@@ -48,19 +50,25 @@ var _class = function (_React$Component) {
       if (!this.list) {
         return;
       }
-      this.container.current.style.width = this.props.width + "px";
-      this.container.current.style.height = this.props.height + "px";
-      this.imgWrapper.current.style.height = this.props.height + "px";
-      var count = this.list.length;
-      this.imgWrapper.current.style.width = count * this.props.width + 'px';
-      this.time = setTimeout(this.loop.bind(this), this.props.intervalTime || 2000);
-      this.imgWrapper.current.addEventListener('transitionend', function () {
+      var parent = this.container.current.parentNode;
+      this.setState({
+        width: this.props.width || parent.clientWidth,
+        height: this.props.height || parent.clientHeight
+      }, function () {
+        _this2.container.current.style.width = _this2.state.width + "px";
+        _this2.container.current.style.height = _this2.state.height + "px";
+        _this2.imgWrapper.current.style.height = _this2.state.height + "px";
+        var count = _this2.list.length;
+        _this2.imgWrapper.current.style.width = count * _this2.state.width + 'px';
         _this2.time = setTimeout(_this2.loop.bind(_this2), _this2.props.intervalTime || 2000);
-        if (_this2.state.index == count) {
-          _this2.imgWrapper.current.style.transition = '0s';
-          _this2.imgWrapper.current.style.transform = 'translateX(0px)';
-          _this2.state.index = 1;
-        }
+        _this2.imgWrapper.current.addEventListener('transitionend', function () {
+          _this2.time = setTimeout(_this2.loop.bind(_this2), _this2.props.intervalTime || 2000);
+          if (_this2.state.index == count) {
+            _this2.imgWrapper.current.style.transition = '0s';
+            _this2.imgWrapper.current.style.transform = 'translateX(0px)';
+            _this2.state.index = 1;
+          }
+        });
       });
     }
   }, {
@@ -68,7 +76,7 @@ var _class = function (_React$Component) {
     value: function loop() {
       if (this.state.index < this.list.length) {
         this.imgWrapper.current.style.transition = this.props.transitionTime || '2s';
-        this.imgWrapper.current.style.transform = 'translateX(' + -this.state.index * this.props.width + 'px)';
+        this.imgWrapper.current.style.transform = 'translateX(' + -this.state.index * this.state.width + 'px)';
       }
       this.setState(function (prevState) {
         return {
@@ -88,7 +96,7 @@ var _class = function (_React$Component) {
           'div',
           { className: 'img-wrapper', ref: this.imgWrapper },
           this.list.map(function (item) {
-            return _react2.default.createElement('img', { src: item.text, style: { width: _this3.props.width }, className: 'img-item', onClick: function onClick() {
+            return _react2.default.createElement('img', { src: item.text, style: { width: _this3.state.width }, className: 'img-item', onClick: function onClick() {
                 window.open(item.href);
               } });
           })
@@ -101,13 +109,13 @@ var _class = function (_React$Component) {
               return null;
             }
             if (_this3.state.index - 1 === index && _this3.state.index !== _this3.list.length) {
-              return _react2.default.createElement('div', { className: 'yello' });
+              return _react2.default.createElement('div', { className: (_this3.props.roundActiveClassName || '') + " yello" });
             }
             if (_this3.state.index == _this3.list.length && index == 0) {
-              return _react2.default.createElement('div', { className: 'yello' });
+              return _react2.default.createElement('div', { className: (_this3.props.roundActiveClassName || '') + " yello" });
             }
 
-            return _react2.default.createElement('div', { className: 'red', onClick: function onClick() {
+            return _react2.default.createElement('div', { className: (_this3.props.roundClassName || '') + " red", onClick: function onClick() {
                 clearTimeout(_this3.time);_this3.setState({ index: index });_this3.time = setTimeout(_this3.loop.bind(_this3), 0);
               } });
           })
