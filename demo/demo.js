@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Slider from '../src/index.js';
+import './demo.css';
 const list = [
   {
     text: 'https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg',
@@ -19,7 +20,7 @@ const intervalTime = 2000;
 const width = 500;
 const height = 300;
 const transitionTime = '2s';
-const A = <div>
-  <Slider list={list} intervalTime={intervalTime} width={width} height={height} transitionTime={transitionTime} />
+const A = <div style={{ height: 300 }}>
+  <Slider roundClassName={'round'} roundActiveClassName={'roundActive'} list={list} intervalTime={intervalTime} transitionTime={transitionTime} />
 </div>
 render(A, document.getElementById('root'));
